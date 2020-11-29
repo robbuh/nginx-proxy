@@ -1,0 +1,9 @@
+/log/**
+!/log/**/
+!log/**/.gitkeep
+/certs/**
+!/certs/**/
+!certs/**/.gitkeep
+/www/**
+!/www/**/
+!www/**/.gitkeep
