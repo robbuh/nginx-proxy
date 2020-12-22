@@ -80,6 +80,7 @@ For Mac users - Add certificate in Keychains
 ```
 $ sudo security add-trusted-cert -d -r trustRoot -k /Library/Keychains/System.keychain certs/$NAME.crt
 ```
+ Don't forget to [trust the new certificate throught Keychains Access app](https://support.apple.com/en-gb/guide/keychain-access/kyca11871/mac) if necessary
 
 ### Check your self signed certificate
 ```
