@@ -2,14 +2,15 @@
 
 Docker custom image for NGINX proxy
 
-## Add new domanin
+## Add new domain
 
-Copy one of template files in ```site-available``` folder, customize it and create a symbolic link in ```site-enabled``` folder
+Copy one of the template files in ```site-available``` folder, customize it and then create a symbolic link in ```site-enabled``` folder
 
 ```
 $ ln -s site-available/mysite.conf site-enabled/mysite.conf
 ```
-Restart NGINX server or reload config
+
+Restart NGINX server or reload config after symbolic link creation and file customization
 
 
 ## Config reference guides
