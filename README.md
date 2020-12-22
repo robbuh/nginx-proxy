@@ -77,10 +77,11 @@ $ openssl x509 -req -in ~/local-ssl/$NAME.csr -CA ~/local-ssl/myCA.pem -CAkey ~/
 ```
 
 For Mac users - Add certificate in Keychains
+
+Don't forget to [trust the new certificate throught Keychains Access app](https://support.apple.com/en-gb/guide/keychain-access/kyca11871/mac) if necessary
 ```
 $ sudo security add-trusted-cert -d -r trustRoot -k /Library/Keychains/System.keychain certs/$NAME.crt
 ```
- Don't forget to [trust the new certificate throught Keychains Access app](https://support.apple.com/en-gb/guide/keychain-access/kyca11871/mac) if necessary
 
 ### Check your self signed certificate
 ```
