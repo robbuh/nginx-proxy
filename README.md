@@ -76,7 +76,8 @@ Create the signed certificate
 $ openssl x509 -req -in ~/local-ssl/$NAME.csr -CA ~/local-ssl/myCA.pem -CAkey ~/local-ssl/myCA.key -CAcreateserial -out certs/$NAME.crt -days 3650 -sha256 -extfile ~/local-ssl/$NAME.ext
 ```
 
-For Mac users - Add certificate in Keychains. Don't forget to [trust the new certificate throught Keychains Access app](https://support.apple.com/en-gb/guide/keychain-access/kyca11871/mac) if necessary
+For Mac users - Add certificate in Keychains.
+Don't forget to [trust the new certificate throught Keychains Access app](https://support.apple.com/en-gb/guide/keychain-access/kyca11871/mac) if necessary
 ```
 $ sudo security add-trusted-cert -d -r trustRoot -k /Library/Keychains/System.keychain certs/$NAME.crt
 ```
