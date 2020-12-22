@@ -1,5 +1,7 @@
 # nginx-proxy
 
+Docker custom image for NGINX proxy
+
 ## Reference guides
 
 * [Minimal Nginx front end configuration for Plone on Ubuntu/Debian Linux](https://docs.plone.org/manage/deploying/front-end/nginx.html#minimal-nginx-front-end-configuration-for-plone-on-ubuntu-debian-linux)
