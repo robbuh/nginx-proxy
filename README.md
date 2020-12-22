@@ -2,7 +2,17 @@
 
 Docker custom image for NGINX proxy
 
-## Reference guides
+## Add new domanin
+
+Copy one of template files in ```site-available``` folder, customize it and create a symbolic link in ```site-enabled``` folder
+
+```
+$ ln -s site-available/mysite.conf site-enabled/mysite.conf
+```
+Restart NGINX server or reload config
+
+
+## Config reference guides
 
 * [Minimal Nginx front end configuration for Plone on Ubuntu/Debian Linux](https://docs.plone.org/manage/deploying/front-end/nginx.html#minimal-nginx-front-end-configuration-for-plone-on-ubuntu-debian-linux)
 * [Securing Plone-Sites with https and nginx](https://www.starzel.de/blog/securing-plone-sites-with-https-and-nginx)
