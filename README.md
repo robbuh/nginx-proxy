@@ -13,13 +13,6 @@ $ ln -s site-available/mysite.conf site-enabled/mysite.conf
 Restart NGINX server or reload config after symbolic link creation and file customization
 
 
-## Config reference guides
-
-* [Minimal Nginx front end configuration for Plone on Ubuntu/Debian Linux](https://docs.plone.org/manage/deploying/front-end/nginx.html#minimal-nginx-front-end-configuration-for-plone-on-ubuntu-debian-linux)
-* [Securing Plone-Sites with https and nginx](https://www.starzel.de/blog/securing-plone-sites-with-https-and-nginx)
-* [Securing Plone Sites With Nginx and HTTPS/SSL](https://designinterventionsystems.com/plone-blog/securing-plone-sites-with-nginx-and-https-ssl)
-
-
 ## Add a self signed certificate for HTTPS connection
 
 Go to nginx-proxy project folder e.g.:
@@ -100,3 +93,10 @@ Don't forget to [trust the new certificate throught Keychains Access app](https:
 ```
 $ openssl verify -CAfile ~/local-ssl/myCA.pem -verify_hostname $NAME certs/$NAME.crt
 ```
+
+
+## Reference guides
+
+* [Minimal Nginx front end configuration for Plone on Ubuntu/Debian Linux](https://docs.plone.org/manage/deploying/front-end/nginx.html#minimal-nginx-front-end-configuration-for-plone-on-ubuntu-debian-linux)
+* [Securing Plone-Sites with https and nginx](https://www.starzel.de/blog/securing-plone-sites-with-https-and-nginx)
+* [Securing Plone Sites With Nginx and HTTPS/SSL](https://designinterventionsystems.com/plone-blog/securing-plone-sites-with-nginx-and-https-ssl)
