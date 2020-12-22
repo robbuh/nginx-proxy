@@ -7,7 +7,7 @@
 * [Securing Plone Sites With Nginx and HTTPS/SSL](https://designinterventionsystems.com/plone-blog/securing-plone-sites-with-nginx-and-https-ssl)
 
 
-## Add a self signed certificate for https connection
+## Add a self signed certificate for HTTPS connection
 
 Go to nginx-proxy project folder e.g.:
 ```
