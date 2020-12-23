@@ -13,6 +13,8 @@ services:
       - ./certs/:/etc/nginx/certs
       - ./www:/var/www/
       - ./log/:/var/log/nginx
+    environment:
+      TZ: Europe/Berlin
     networks:
       - frontend
       - backend
