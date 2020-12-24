@@ -91,7 +91,7 @@ Don't forget to [trust the new certificate throught Keychains Access app](https:
 
 ### Check your self signed certificate
 ```
-$ openssl verify -CAfile ~/local-ssl/myCA.pem -verify_hostname $NAME certs/$NAME.crt
+$ openssl verify -verbose -CAfile ~/local-ssl/myCA.pem certs/$NAME.crt
 ```
 
 
