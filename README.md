@@ -4,6 +4,9 @@ Docker development custom image for NGINX
 
 ```
 $ git clone https://github.com/robbuh/nginx-proxy
+```
+
+```
 $ docker-compose up
 ```
 
