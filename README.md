@@ -10,11 +10,20 @@ $ git clone https://github.com/robbuh/nginx-proxy
 $ docker-compose up
 ```
 
-### Add new nginx domain configuration through available templates
+## Add new nginx domain configuration
 
 [TODO]
 
-### Add new self signed certificate for HTTPS connection
+Copy one of the template files in ```site-available``` folder, customize it and then create a symbolic link in ```site-enabled``` folder
+
+```
+$ ln -s site-available/mysite.conf site-enabled/mysite.conf
+```
+
+Restart NGINX server or reload config after symbolic link creation and file customization
+
+
+## Add new self signed certificate for HTTPS connection
 
 Follow prompt instruction after run each command
 
@@ -32,19 +41,6 @@ $ make cert_check
 ```
 $ make keychain_add
 ```
-
-## Add new nginx domain configuration
-
-[TODO]
-
-Copy one of the template files in ```site-available``` folder, customize it and then create a symbolic link in ```site-enabled``` folder
-
-```
-$ ln -s site-available/mysite.conf site-enabled/mysite.conf
-```
-
-Restart NGINX server or reload config after symbolic link creation and file customization
-
 
 ## Manually add self signed certificate for HTTPS connection
 
