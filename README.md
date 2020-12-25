@@ -27,7 +27,7 @@ Restart NGINX server or reload config after symbolic link creation and file cust
 
 Follow prompt instruction after run each command.
 
- If you want add a new self signed certificate MANUALLY go to below section "Manually add self signed certificate for HTTPS connection"
+ If you want add a new self signed certificate MANUALLY go to below step by step section "Manually add self signed certificate for HTTPS connection"
 
 #### Add new certificate
 ```
