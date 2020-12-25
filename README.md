@@ -46,14 +46,14 @@ $ make keychain_add
 
 ## Manually add self signed certificate for HTTPS connection
 
-Go to nginx-proxy project folder e.g.:
-```
-$ cd mydir/nginx-proxy
-```
-
 Create a local-ssl directory in home folder
 ```
 $ mkdir ~/local-ssl
+```
+
+Go to nginx-proxy project folder e.g.:
+```
+$ cd mydir/nginx-proxy
 ```
 
 ### Become a Certificate Authority
