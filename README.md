@@ -29,17 +29,17 @@ Follow prompt instruction after run each command.
 
  If you want add a new self signed certificate MANUALLY go to below step by step section "Manually add self signed certificate for HTTPS connection"
 
-#### Add new certificate
+#### Add new self signed certificate
 ```
 $ make cert_add
 ```
 
-#### Check if newly created certificate is working
+#### Check newly created self signed certificate
 ```
 $ make cert_check
 ```
 
-#### [For Mac users] Add certificate to Keychain
+#### [For Mac users] Add self signed certificate in Keychain
 ```
 $ make keychain_add
 ```
@@ -113,7 +113,7 @@ Create the signed certificate
 $ openssl x509 -req -in ~/local-ssl/$DOMAIN.csr -CA ~/local-ssl/myCA.pem -CAkey ~/local-ssl/myCA.key -CAcreateserial -out certs/$DOMAIN.crt -days 3650 -sha256 -extfile ~/local-ssl/$DOMAIN.ext
 ```
 
-For Mac users - Add certificate in Keychains.
+For Mac users - Add self signed certificate in Keychain
 ```
 $ sudo security add-trusted-cert -d -r trustAsRoot -k /Library/Keychains/System.keychain certs/$DOMAIN.crt
 ```
