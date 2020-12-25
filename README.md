@@ -25,7 +25,7 @@ Restart NGINX server or reload config after symbolic link creation and file cust
 
 ## Add new self signed certificate for HTTPS connection
 
-Follow prompt instruction after run each command.
+Follow prompt instruction after run each command
 
  If you want add a new self signed certificate MANUALLY go to below step by step section "Manually add self signed certificate for HTTPS connection"
 
@@ -76,7 +76,7 @@ State or Province Name (full name) []: Italy
 ###  Create CA-signed certs
 Set var with domain name you're playing with
 ```
-$ DOMAIN=mysite.test
+$ DOMAIN=mysite.com
 ```
 
 Generate a private key
