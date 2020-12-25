@@ -49,7 +49,7 @@ State or Province Name (full name) []: Italy
 ```
 
 ###  Create CA-signed certs
-Set var with mysite.test you're playing with
+Set var with domain name you're playing with
 ```
 $ DOMAIN=mysite.test
 ```
