@@ -21,14 +21,17 @@ Follow prompt instruction after run each command
 ```
 # Add new certificate
 $ make cert_add
+```
 
+```
 # Check if newly created certificate is working
 $ make cert_check
+```
 
+```
 # [For Mac users] Add certificate to Keychain
 $ make keychain_add
 ```
-
 
 ## Add new nginx domain configuration
 
