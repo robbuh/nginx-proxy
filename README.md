@@ -10,32 +10,23 @@ $ git clone https://github.com/robbuh/nginx-proxy
 $ docker-compose up
 ```
 
-Check available make recipe
-
-```
-$ make help
-```
-
 ### Add new nginx domain configuration through available templates
 
 [TODO]
 
 ### Add new self signed certificate for HTTPS connection
 
-```
-make cert_add
-```
-
-Check if newly created certificate is working
+Follow prompt instruction after run each command
 
 ```
-make cert_check
-```
+# Add new certificate
+$ make cert_add
 
-[For Mac users] Add certificate to Keychain
+# Check if newly created certificate is working
+$ make cert_check
 
-```
-make keychain_add
+# [For Mac users] Add certificate to Keychain
+$ make keychain_add
 ```
 
 
