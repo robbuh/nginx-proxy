@@ -2,11 +2,10 @@
 
 Docker development custom image for NGINX:
 
-* Add a new local domain name
-* Add a new self signed certificate to HTTPS connection
 * Add new nginx domain configuration through available templates
+* Add new self signed certificate for HTTPS connection
 
-## Add new domain
+## Add new nginx domain configuration
 
 [TODO]
 
@@ -19,7 +18,7 @@ $ ln -s site-available/mysite.conf site-enabled/mysite.conf
 Restart NGINX server or reload config after symbolic link creation and file customization
 
 
-## Manually add self signed certificate for HTTPS connection instructions
+## Manually add self signed certificate for HTTPS connection
 
 Go to nginx-proxy project folder e.g.:
 ```
