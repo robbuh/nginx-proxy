@@ -1,8 +1,14 @@
 # nginx-proxy
 
-Docker custom image for NGINX proxy
+Docker development custom image for NGINX:
+
+* Add a new local domain name
+* Add a new self signed certificate to HTTPS connection
+* Add new nginx domain configuration through available templates
 
 ## Add new domain
+
+[TODO]
 
 Copy one of the template files in ```site-available``` folder, customize it and then create a symbolic link in ```site-enabled``` folder
 
@@ -13,7 +19,7 @@ $ ln -s site-available/mysite.conf site-enabled/mysite.conf
 Restart NGINX server or reload config after symbolic link creation and file customization
 
 
-## Add a self signed certificate for HTTPS connection
+## Manually add self signed certificate for HTTPS connection instructions
 
 Go to nginx-proxy project folder e.g.:
 ```
@@ -43,55 +49,55 @@ State or Province Name (full name) []: Italy
 ```
 
 ###  Create CA-signed certs
-Set var with www.your-domain.test you're playing with
+Set var with mysite.test you're playing with
 ```
-$ NAME=plone.mysite.test
+$ DOMAIN=mysite.test
 ```
 
 Generate a private key
 ```
-$ openssl genrsa -out certs/$NAME.key 2048
+$ openssl genrsa -out certs/$DOMAIN.key 2048
 ```
 
 Create a certificate-signing request
 
-For Mac users: make sure to set the ```"Common Name"``` to the same as ```$NAME``` when it's asking for setup
+For Mac users: make sure to set the ```"Common Name"``` to the same as ```$DOMAIN``` when it's asking for setup
 ```
-$ openssl req -new -key certs/$NAME.key -out ~/local-ssl/$NAME.csr
+$ openssl req -new -key certs/$DOMAIN.key -out ~/local-ssl/$DOMAIN.csr
 ```
 
 Create a config file for the extensions
 
 For Mac users: add ```extendedKeyUsage=serverAuth,clientAuth``` below ```basicConstraints=CA:FALSE```
 ```
-$ >~/local-ssl/$NAME.ext cat <<-EOF
+$ >~/local-ssl/$DOMAIN.ext cat <<-EOF
 authorityKeyIdentifier=keyid,issuer
 basicConstraints=CA:FALSE
 extendedKeyUsage=serverAuth,clientAuth
 keyUsage = digitalSignature, nonRepudiation, keyEncipherment, dataEncipherment
 subjectAltName = @alt_names
 [alt_names]
-DNS.1 = $NAME # Be sure to include the domain name here because Common Name is not so commonly honoured by itself
-DNS.2 = www.$NAME # Optionally, add additional domains (I've added a www subdomain here)
+DNS.1 = $DOMAIN # Be sure to include the domain name here because Common Name is not so commonly honoured by itself
+DNS.2 = www.$DOMAIN # Optionally, add additional domains (I've added a www subdomain here)
 IP.1 = 127.0.0.1 # Optionally, add an IP address (if the connection which you have planned requires it)
 EOF
 ```
 
 Create the signed certificate
 ```
-$ openssl x509 -req -in ~/local-ssl/$NAME.csr -CA ~/local-ssl/myCA.pem -CAkey ~/local-ssl/myCA.key -CAcreateserial -out certs/$NAME.crt -days 3650 -sha256 -extfile ~/local-ssl/$NAME.ext
+$ openssl x509 -req -in ~/local-ssl/$DOMAIN.csr -CA ~/local-ssl/myCA.pem -CAkey ~/local-ssl/myCA.key -CAcreateserial -out certs/$DOMAIN.crt -days 3650 -sha256 -extfile ~/local-ssl/$DOMAIN.ext
 ```
 
 For Mac users - Add certificate in Keychains.
 ```
-$ sudo security add-trusted-cert -d -r trustRoot -k /Library/Keychains/System.keychain certs/$NAME.crt
+$ sudo security add-trusted-cert -d -r trustAsRoot -k /Library/Keychains/System.keychain certs/$DOMAIN.crt
 ```
 
 Don't forget to [trust the new certificate throught Keychains Access app](https://support.apple.com/en-gb/guide/keychain-access/kyca11871/mac) if necessary
 
 ### Check your self signed certificate
 ```
-$ openssl verify -verbose -CAfile ~/local-ssl/myCA.pem certs/$NAME.crt
+$ openssl verify -verbose -CAfile ~/local-ssl/myCA.pem certs/$DOMAIN.crt
 ```
 
 
