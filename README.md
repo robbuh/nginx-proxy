@@ -1,6 +1,6 @@
 # nginx-proxy
 
-Docker development custom image for NGINX:
+Docker development custom image for NGINX
 
 * Add new nginx domain configuration through available templates
 * Add new self signed certificate for HTTPS connection
