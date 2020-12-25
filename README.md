@@ -2,6 +2,11 @@
 
 Docker development custom image for NGINX
 
+```
+$ git clone https://github.com/robbuh/nginx-proxy
+$ docker-compose up
+```
+
 * Add new nginx domain configuration through available templates
 * Add new self signed certificate for HTTPS connection
 
