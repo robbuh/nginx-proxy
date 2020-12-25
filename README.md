@@ -10,8 +10,34 @@ $ git clone https://github.com/robbuh/nginx-proxy
 $ docker-compose up
 ```
 
-* Add new nginx domain configuration through available templates
-* Add new self signed certificate for HTTPS connection
+Check available make recipe
+
+```
+$ make help
+```
+
+### Add new nginx domain configuration through available templates
+
+[TODO]
+
+### Add new self signed certificate for HTTPS connection
+
+```
+make cert_add
+```
+
+Check if newly created certificate is working
+
+```
+make cert_check
+```
+
+[For Mac users] Add certificate to Keychain
+
+```
+make keychain_add
+```
+
 
 ## Add new nginx domain configuration
 
