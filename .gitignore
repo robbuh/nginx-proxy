@@ -2,9 +2,5 @@
 log/
 certs/
 www/
-/sites-available/**
-!/sites-available/**/
-!sites-available/**/.gitkeep
-/sites-enabled/**
-!/sites-enabled/**/
-!sites-enabled/**/.gitkeep
+sites-available/
+sites-enabled/
