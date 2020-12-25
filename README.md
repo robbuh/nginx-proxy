@@ -10,7 +10,7 @@ $ git clone https://github.com/robbuh/nginx-proxy
 $ docker-compose up
 ```
 
-## Add new nginx domain configuration
+## Add new NGINX domain configuration
 
 [TODO]
 
