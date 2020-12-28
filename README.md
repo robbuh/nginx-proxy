@@ -12,16 +12,14 @@ $ docker-compose up
 
 ## Add new NGINX domain configuration
 
-[TODO]
+Follow prompt instruction after run each command
 
-Copy one of the template files in ```site-available``` folder, customize it and then create a symbolic link in ```site-enabled``` folder
+#### Add new domain and restart NGINX
 
 ```
-$ ln -s sites-available/mysite.conf sites-enabled/mysite.conf
+$ make domain_add
+$ make restart
 ```
-
-Restart NGINX server or reload config after symbolic link creation and file customization
-
 
 ## Add new self signed certificate for HTTPS connection
 
@@ -29,9 +27,11 @@ Follow prompt instruction after run each command
 
  If you want add a new self signed certificate MANUALLY go to below step by step section "Manually add self signed certificate for HTTPS connection"
 
-#### Add new self signed certificate
+#### Add new self signed certificate and restart NGINX
 ```
 $ make cert_add
+$ make restart
+
 ```
 
 #### Check newly created self signed certificate

@@ -14,12 +14,14 @@ myCA.pem = "myCA.pem"
 DOMAIN ?= $(shell bash -c 'read -p "Enter the domain name you want to add (e.g. mydomain.com) :" domain; echo $$domain')
 IP_ADDRESS ?= $(shell bash -c 'read -p "Enter an ip address (leave blank for default 127.0.0.1) :" ipaddress; echo $$ipaddress')
 SITE_ID ?= $(shell bash -c 'read -p "Enter your site id :" siteid; echo $$siteid')
+TAMPLATE_NAME ?= $(shell bash -c 'read -p "Type one configuration file name listed in templates folder (configuration file start with _ char) :" tamplate_name; echo $$tamplate_name')
 
 .PHONY: domain_add
 domain_add:	## Add a new domain in NGINX
 	@domain=$(DOMAIN); \
 	ipaddress=$(IP_ADDRESS); \
 	siteid=$(SITE_ID); \
+	template_name=$(TAMPLATE_NAME); \
 	if [ ! "$$domain" ]; then \
 		echo "Please set your domain name"; \
 		exit 0; \
@@ -31,7 +33,11 @@ domain_add:	## Add a new domain in NGINX
 		echo "Please set your site id"; \
 		exit 0; \
 	fi; \
-	sed -e "s/DOMAIN_NAME/$$domain/g" -e "s/IP_ADDRESS/$$ipaddress/g" -e "s/SITE_ID/$$siteid/g" templates/_plone.conf > sites-available/$$domain.conf; \
+	if [ ! "$$template_name" ]; then \
+		echo 'Please set one of template configuration listed in "templates" folder'; \
+		exit 0; \
+	fi; \
+	sed -e "s/DOMAIN_NAME/$$domain/g" -e "s/IP_ADDRESS/$$ipaddress/g" -e "s/SITE_ID/$$siteid/g" templates/$$template_name > sites-available/$$domain.conf; \
 	set -x; \
 			cd sites-enabled; \
 			ln -fs ../sites-available/$$domain.conf $$domain.conf; \
@@ -109,6 +115,18 @@ keychain_add:		## Add a certificate in Keychain (Mac users)
 	fi; \
 	sudo security add-trusted-cert -d -r trustAsRoot -k /Library/Keychains/System.keychain ${CERTS_DIR}/$$domain.crt; \
 	echo "Your new certificate has been added in Keychain"
+
+.PHONY: stop
+stop:		## Stop all services
+	docker-compose stop
+
+.PHONY: start
+start:		## Start all services
+	docker-compose start
+
+.PHONY: restart
+restart:		## Restart all services
+	docker-compose restart
 
 .PHONY: help
 help:		## Show this help
