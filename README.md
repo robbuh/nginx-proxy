@@ -17,7 +17,7 @@ $ docker-compose up
 Copy one of the template files in ```site-available``` folder, customize it and then create a symbolic link in ```site-enabled``` folder
 
 ```
-$ ln -s site-available/mysite.conf site-enabled/mysite.conf
+$ ln -s sites-available/mysite.conf sites-enabled/mysite.conf
 ```
 
 Restart NGINX server or reload config after symbolic link creation and file customization
