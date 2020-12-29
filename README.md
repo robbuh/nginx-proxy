@@ -10,6 +10,11 @@ $ git clone https://github.com/robbuh/nginx-proxy
 $ docker-compose up
 ```
 
+#### Check list of available recipe
+```
+$ make help
+```
+
 ## Add new NGINX domain configuration
 
 Follow prompt instruction after run each command
