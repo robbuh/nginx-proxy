@@ -10,7 +10,7 @@ $ git clone https://github.com/robbuh/nginx-proxy
 $ docker-compose up
 ```
 
-#### Check list of available recipe
+Check available Makefile recipe
 ```
 $ make help
 ```
