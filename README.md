@@ -17,7 +17,7 @@ Follow prompt instruction after run each command
 #### Add new domain and restart NGINX
 
 ```
-$ make domain_add
+$ make domain
 $ make restart
 ```
 
@@ -29,19 +29,19 @@ Follow prompt instruction after run each command
 
 #### Add new self signed certificate and restart NGINX
 ```
-$ make cert_add
+$ make cert
 $ make restart
 
 ```
 
 #### Check newly created self signed certificate
 ```
-$ make cert_check
+$ make cert-check
 ```
 
 #### [For Mac users] Add self signed certificate in Keychain
 ```
-$ make keychain_add
+$ make keychain-add
 ```
 
 ## Manually add self signed certificate for HTTPS connection

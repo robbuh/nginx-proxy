@@ -11,13 +11,14 @@ CERTS_DIR = "certs"
 myCA.key = "myCA.key"
 myCA.pem = "myCA.pem"
 
-DOMAIN ?= $(shell bash -c 'read -p "Enter the domain name you want to add (e.g. mydomain.com) :" domain; echo $$domain')
-IP_ADDRESS ?= $(shell bash -c 'read -p "Enter an ip address (leave blank for default 127.0.0.1) :" ipaddress; echo $$ipaddress')
-SITE_ID ?= $(shell bash -c 'read -p "Enter your site id :" siteid; echo $$siteid')
-TAMPLATE_NAME ?= $(shell bash -c 'read -p "Type one configuration file name listed in templates folder (configuration file start with _ char) :" tamplate_name; echo $$tamplate_name')
+DOMAIN ?= $(shell bash -c 'read -p "Enter domain name you want to add (e.g. mydomain.com) :" domain; echo $$domain')
+IP_ADDRESS ?= $(shell bash -c 'read -p "Enter ip address (leave blank for default 127.0.0.1) :" ipaddress; echo $$ipaddress')
+SITE_ID ?= $(shell bash -c 'read -p "Enter site id :" siteid; echo $$siteid')
+TEMPLATE_LIST := $(shell bash -c 'ls templates/_* | xargs -n 1 basename |  tr "\n" ","')
+TAMPLATE_NAME ?= $(shell bash -c 'read -p "Type one of the available configuration files [${TEMPLATE_LIST}]:" tamplate_name; echo $$tamplate_name')
 
-.PHONY: domain_add
-domain_add:	## Add a new domain in NGINX
+.PHONY: domain
+domain:	## Add a new domain in NGINX
 	@domain=$(DOMAIN); \
 	ipaddress=$(IP_ADDRESS); \
 	siteid=$(SITE_ID); \
@@ -34,7 +35,8 @@ domain_add:	## Add a new domain in NGINX
 		exit 0; \
 	fi; \
 	if [ ! "$$template_name" ]; then \
-		echo 'Please set one of template configuration listed in "templates" folder'; \
+		echo 'Please type one of available configuration template:'; \
+		ls templates/_* | xargs -n 1 basename; \
 		exit 0; \
 	fi; \
 	sed -e "s/DOMAIN_NAME/$$domain/g" -e "s/IP_ADDRESS/$$ipaddress/g" -e "s/SITE_ID/$$siteid/g" templates/$$template_name > sites-available/$$domain.conf; \
@@ -79,13 +81,13 @@ CA-signed-certs_create:
 	openssl genrsa -out ${CERTS_DIR}/$$domain.key 2048; \
 	echo "Create a certificate-signing request"; \
 	echo -e "\a"; \
-	echo "ALERT! For Mac users: make sure to set the 'Common Name' to the same as domain name setted (in your case: $$domain) when it's asking for setup"; \
+	echo "WARNING! For Mac users: make sure to set the 'Common Name' to the same as domain name setted (in your case: $$domain) when it's asking for setup"; \
 	echo -e "\a"; \
 	openssl req -new -key ${CERTS_DIR}/$$domain.key -out ${SSL_DIR}/$$domain.csr; \
 	echo "Create a config file for the extensions"; \
 	sed -e "s/DOMAIN_NAME/$$domain/g" -e "s/IP_ADDRESS/$$ipaddress/g" templates/certificate-extension.conf > ${SSL_DIR}/$$domain.ext; \
 	echo -e "\a"; \
-	echo "ALERT! For Not Mac users you can comment line 'extendedKeyUsage=serverAuth,clientAuth' in newly created file ${SSL_DIR}/$$domain.ext"; \
+	echo "WARNING! For Not Mac users you can comment line 'extendedKeyUsage=serverAuth,clientAuth' in newly created file ${SSL_DIR}/$$domain.ext"; \
 	echo -e "\a"; \
 	echo "Create the signed certificate"; \
 	openssl x509 -req -in ${SSL_DIR}/$$domain.csr -CA ${SSL_DIR}/${myCA.pem} -CAkey ${SSL_DIR}/${myCA.key} \
@@ -93,11 +95,11 @@ CA-signed-certs_create:
 	-sha256 -extfile ${SSL_DIR}/$$domain.ext; \
 	echo "Everything good! Don't forget to add the trusted certificate to your system" ;\
 
-.PHONY: cert_add
-cert_add:ssl-dir CA-private-key CA-root-cert CA-signed-certs_create 		## Add a new local self signed certificate for HTTPS connection
+.PHONY: cert
+cert:ssl-dir CA-private-key CA-root-cert CA-signed-certs_create 		## Add a new local self signed certificate for HTTPS connection
 
-.PHONY: cert_check
-cert_check:		## Check your self signed certificate
+.PHONY: cert-check
+cert-check:		## Check your self signed certificate
 	@domain=$(DOMAIN); \
 	if [ ! "$$domain" ]; then \
 		echo "Please set your domain name"; \
@@ -105,9 +107,8 @@ cert_check:		## Check your self signed certificate
 	fi; \
 	openssl verify -verbose -CAfile ${SSL_DIR}/${myCA.pem} ${CERTS_DIR}/$$domain.crt; \
 
-
-.PHONY: keychain_add
-keychain_add:		## Add a certificate in Keychain (Mac users)
+.PHONY: keychain-add
+keychain-add:		## Add a certificate in Keychain (Mac users)
 	@domain=$(DOMAIN); \
 	if [ ! "$$domain" ]; then \
 		echo "Please set your domain name"; \
