@@ -31,7 +31,6 @@ Follow prompt instruction after run each command
 ```
 $ make cert
 $ make restart
-
 ```
 
 #### Check newly created self signed certificate
