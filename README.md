@@ -19,8 +19,6 @@ $ make help
 
 Follow prompt instruction after run each command
 
-First run will create folder ```~/local-ssl``` and certificate authority files ```myCA.key```, ```myCA.pem``` inside ```local-ssl``` folder. You can change these names in ```Makefile```: ```SSL_DIR```, ```myCA.key```, ```myCA.pem``` variables
-
 #### Add new domain and restart NGINX
 
 ```
@@ -32,7 +30,9 @@ $ make restart
 
 Follow prompt instruction after run each command
 
- If you want add a new self signed certificate MANUALLY go to below step by step section "Manually add self signed certificate for HTTPS connection"
+First run will create folder ```~/local-ssl``` and certificate authority files ```myCA.key```, ```myCA.pem``` inside ```local-ssl``` folder. You can change these names in ```Makefile```: ```SSL_DIR```, ```myCA.key```, ```myCA.pem``` variables
+
+If you want add a new self signed certificate MANUALLY go to below step by step section "Manually add self signed certificate for HTTPS connection"
 
 #### Add new self signed certificate and restart NGINX
 ```
