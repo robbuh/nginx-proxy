@@ -19,6 +19,8 @@ $ make help
 
 Follow prompt instruction after run each command
 
+First run will create folder ```~/local-ssl``` and certificate authority files ```myCA.key```, ```myCA.pem``` inside ```local-ssl``` folder. You can change these names in ```Makefile```: ```SSL_DIR```, ```myCA.key```, ```myCA.pem``` variables
+
 #### Add new domain and restart NGINX
 
 ```
