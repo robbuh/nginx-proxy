@@ -13,7 +13,7 @@ myCA.pem = "myCA.pem"
 
 DOMAIN ?= $(shell bash -c 'read -p "Enter domain name you want to add (e.g. mydomain.com) :" domain; echo $$domain')
 IP_ADDRESS ?= $(shell bash -c 'read -p "Enter ip address (leave blank for default 127.0.0.1) :" ipaddress; echo $$ipaddress')
-SITE_ID ?= $(shell bash -c 'read -p "Enter site id :" siteid; echo $$siteid')
+SITE_ID ?= $(shell bash -c 'read -p "Enter site id (leave blank if not requested in configuration file):" siteid; echo $$siteid')
 TEMPLATE_LIST := $(shell bash -c 'ls templates/_* | xargs -n 1 basename |  tr "\n" ","')
 TAMPLATE_NAME ?= $(shell bash -c 'read -p "Type one of the available configuration files [${TEMPLATE_LIST}]:" tamplate_name; echo $$tamplate_name')
 
@@ -31,8 +31,7 @@ domain:	## Add a new domain in NGINX
 		ipaddress='127.0.0.1'; \
 	fi; \
 	if [ ! "$$siteid" ]; then \
-		echo "Please set your site id"; \
-		exit 0; \
+		echo "Site ID empty"; \
 	fi; \
 	if [ ! "$$template_name" ]; then \
 		echo 'Please type one of available configuration template:'; \
@@ -43,6 +42,7 @@ domain:	## Add a new domain in NGINX
 	set -x; \
 			cd sites-enabled; \
 			ln -fs ../sites-available/$$domain.conf $$domain.conf; \
+	echo "Everything good! New domain name $$domain has been added. Don't forget to add a new certicate with same name $$domain" ;\
 
 .PHONY: ssl-dir
 ssl-dir:
@@ -91,7 +91,7 @@ CA-signed-certs_create:
 	echo -e "\a"; \
 	echo "Create the signed certificate"; \
 	openssl x509 -req -in ${SSL_DIR}/$$domain.csr -CA ${SSL_DIR}/${myCA.pem} -CAkey ${SSL_DIR}/${myCA.key} \
-	-CAcreateserial -out ${CERTS_DIR}/$$domain.crt -days 3650 \
+	-CAcreateserial -out ${CERTS_DIR}/$$domain.crt -days 825 \
 	-sha256 -extfile ${SSL_DIR}/$$domain.ext; \
 	echo "Everything good! Don't forget to add the trusted certificate to your system" ;\
 
@@ -111,7 +111,7 @@ cert-check:		## Check your self signed certificate
 keychain-add:		## Add a certificate in Keychain (Mac users)
 	@domain=$(DOMAIN); \
 	if [ ! "$$domain" ]; then \
-		echo "Please set your domain name"; \
+		echo "Please set your domain name (root password required)"; \
 		exit 0; \
 	fi; \
 	sudo security add-trusted-cert -d -r trustAsRoot -k /Library/Keychains/System.keychain ${CERTS_DIR}/$$domain.crt; \
