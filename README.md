@@ -116,7 +116,7 @@ EOF
 
 Create the signed certificate
 ```
-$ openssl x509 -req -in ~/local-ssl/$DOMAIN.csr -CA ~/local-ssl/myCA.pem -CAkey ~/local-ssl/myCA.key -CAcreateserial -out certs/$DOMAIN.crt -days 3650 -sha256 -extfile ~/local-ssl/$DOMAIN.ext
+$ openssl x509 -req -in ~/local-ssl/$DOMAIN.csr -CA ~/local-ssl/myCA.pem -CAkey ~/local-ssl/myCA.key -CAcreateserial -out certs/$DOMAIN.crt -days 825 -sha256 -extfile ~/local-ssl/$DOMAIN.ext
 ```
 
 For Mac users - Add self signed certificate in Keychain
