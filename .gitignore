@@ -1,6 +1,11 @@
 .DS_Store
-log/
-certs/
-www/
-sites-available/
-sites-enabled/
+log/*
+certs/*
+www/*
+sites-available/*
+sites-enabled/*
+!log/.gitkeep
+!certs/.gitkeep
+!www/.gitkeep
+!sites-available/.gitkeep
+!sites-enabled/.gitkeep
